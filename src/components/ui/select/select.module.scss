@@ -1,0 +1,67 @@
+.trigger,
+.viewport {
+  position: relative;
+  left: 0;
+  border: 1px solid var(--color-dark-300);
+}
+
+.trigger {
+  display: flex;
+  justify-content: space-between;
+
+  min-width: 50px;
+
+  background: var(--color-dark-900);
+  border-radius: 2px;
+
+  &:focus {
+    border: 1px solid var(--color-info-700);
+    border-radius: 2px;
+    outline: none;
+  }
+
+  &:hover {
+    background: var(--color-dark-300);
+  }
+}
+
+.trigger[data-disabled] {
+  color: var(--color-dark-100);
+  opacity: 0.6;
+}
+
+.item {
+  all: unset;
+
+  display: flex;
+
+  padding: 6px 12px;
+
+  font-size: var(--font-size-m);
+  font-weight: 400;
+  line-height: var(--line-height-m);
+  color: var(--color-light-300);
+
+  background: var(--color-dark-900);
+
+  &:hover,
+  &:focus {
+    color: var(--color-accent-300);
+    background: var(--color-accent-900);
+  }
+}
+
+.selectContent {
+  position: relative;
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+}
+
+.icon {
+  fill: var(--color-light-100);
+  transition: 0.5s;
+
+  .trigger[data-state='open'] & {
+    transform: rotate(180deg);
+  }
+}
