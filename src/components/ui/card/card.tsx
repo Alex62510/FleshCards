@@ -40,7 +40,6 @@ export const Card: FC<CardProps> = ({
     icon: s.icon,
     title: s.title,
   }
-
   return (
     <div className={classNames.box} {...rest}>
       {title && (
