@@ -1,20 +1,24 @@
 import { useState } from 'react'
 
+import { VerticalContainer } from '@/utils/containers/vertical'
+import { ValuePreview } from '@/utils/preview/preview'
 import { Meta } from '@storybook/react'
 import { JSX } from 'react/jsx-runtime'
 
-import { Checkbox, CheckboxProps } from './checkbox.tsx'
-
-import { VerticalContainer } from '@/utils/containers/vertical.tsx'
-import { ValuePreview } from '@/utils/preview/preview.tsx'
+import { Checkbox, CheckboxProps } from './checkbox'
 
 export default {
-  title: 'Components/Data Entry/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+  title: 'Components/Data Entry/Checkbox',
 } as Meta<typeof Checkbox>
 
 export const Default = {
+  args: {
+    disabled: false,
+    label: '',
+  },
+
   render: (args: JSX.IntrinsicAttributes & CheckboxProps) => {
     const [checked, setChecked] = useState(true)
 
@@ -25,28 +29,28 @@ export const Default = {
       </VerticalContainer>
     )
   },
-
-  args: {
-    label: '',
-    disabled: false,
-  },
 }
 export const Disable = {
+  args: {
+    disabled: false,
+    label: '',
+  },
+
   render: (args: JSX.IntrinsicAttributes & CheckboxProps) => {
     return (
       <VerticalContainer>
-        <Checkbox {...args} checked={false} disabled={true} />
+        <Checkbox {...args} checked={false} disabled />
         {/*<ValuePreview>checked: {String(checked)}</ValuePreview>*/}
       </VerticalContainer>
     )
   },
-
-  args: {
-    label: '',
-    disabled: false,
-  },
 }
 export const DefaultWhithLabel = {
+  args: {
+    disabled: false,
+    label: 'Click here',
+  },
+
   render: (args: JSX.IntrinsicAttributes & CheckboxProps) => {
     const [checked, setChecked] = useState(true)
 
@@ -56,10 +60,5 @@ export const DefaultWhithLabel = {
         <ValuePreview>checked: {String(checked)}</ValuePreview>
       </VerticalContainer>
     )
-  },
-
-  args: {
-    label: 'Click here',
-    disabled: false,
   },
 }

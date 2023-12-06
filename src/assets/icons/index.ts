@@ -1,3 +1,3 @@
-export * from './logout.tsx'
-export * from './search.tsx'
-export * from './TheGift.tsx'
+export * from './logout'
+export * from './search'
+export * from './TheGift'

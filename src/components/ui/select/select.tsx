@@ -1,12 +1,11 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
+import { Typography } from '@/components/ui/typography'
 import { ChevronDownIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import { JSX } from 'react/jsx-runtime'
 
 import s from './select.module.scss'
-
-import { Typography } from '@/components/ui/typography'
 
 export type SelectProps = {
   options: string[]
@@ -15,7 +14,7 @@ export type SelectProps = {
 } & ComponentPropsWithoutRef<typeof SelectRadix.Root>
 
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProps>(
-  ({ options, title, placeholder, ...rest }, ref): JSX.Element => {
+  ({ options, placeholder, title, ...rest }, ref): JSX.Element => {
     const mappedItems = options.map((e, id) => (
       <SelectRadix.Item className={s.item} key={id} value={e}>
         <SelectRadix.ItemText>{e}</SelectRadix.ItemText>

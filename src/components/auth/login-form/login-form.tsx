@@ -1,12 +1,12 @@
+import { useForm } from 'react-hook-form'
+
+import { ControlledCheckbox } from '@/components/controlled/controlled-checkbox'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '../../ui/button'
 import { TextField } from '../../ui/textFeld'
-
-import { ControlledCheckbox } from '@/components/controlled/controlled-checkbox.tsx'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -18,20 +18,17 @@ type FormValues = z.infer<typeof loginSchema>
 export const LoginForm = ({ onSubmit }: { onSubmit: (data: FormValues) => void }) => {
   const {
     control,
-    register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
   } = useForm<FormValues>({
-    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
       rememberMe: undefined,
     },
+    resolver: zodResolver(loginSchema),
   })
-
-  console.log(errors)
-
   // const onSubmit = (data: FormValues) => {
   //   console.log(data)
   // }
@@ -40,14 +37,14 @@ export const LoginForm = ({ onSubmit }: { onSubmit: (data: FormValues) => void }
     <>
       <DevTool control={control} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField {...register('email')} label={'email'} errorMessage={errors.email?.message} />
+        <TextField {...register('email')} errorMessage={errors.email?.message} label={'email'} />
         <TextField
           {...register('password')}
-          label={'password'}
           errorMessage={errors.password?.message}
+          label={'password'}
         />
-        <ControlledCheckbox label={'Remember Me'} control={control} name={'rememberMe'} />
-        <Button type="submit">Submit</Button>
+        <ControlledCheckbox control={control} label={'Remember Me'} name={'rememberMe'} />
+        <Button type={'submit'}>Submit</Button>
       </form>
     </>
   )
