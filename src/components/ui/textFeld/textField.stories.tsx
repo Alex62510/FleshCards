@@ -1,67 +1,71 @@
 import { useState } from 'react'
 
+import { Eye } from '@/assets/icons/eye'
 import { Meta } from '@storybook/react'
 
-import { TextField } from '../textFeld/textField.tsx'
-
-import { Eye } from '@/assets/icons/eye.tsx'
+import { TextField } from '../textFeld/textField'
 
 export default {
-  title: 'Components/Data Entry/Text Field',
   component: TextField,
   tags: ['autodocs'],
+  title: 'Components/Data Entry/Text Field',
 } as Meta<typeof TextField>
 
 export const Primary = {
   args: {
+    disabled: false,
+    error: false,
     label: 'Input',
     placeholder: 'Input',
-    error: false,
-    disabled: false,
   },
 }
 export const WithIcon = {
   args: {
+    disabled: false,
+    error: false,
+    iconEnd: <Eye fill={'var(--color-dark-100)'} />,
     label: 'Input',
     placeholder: 'Input',
-    iconEnd: <Eye fill={'var(--color-dark-100)'} />,
-    error: false,
-    disabled: false,
   },
 }
 
 export const Search = {
   args: {
+    disabled: false,
+    error: false,
     placeholder: 'Input search',
     search: true,
-    error: false,
-    disabled: false,
   },
 }
 
 export const SearchChangeValue = {
+  args: {
+    label: 'Some label',
+    placeholder: 'Search...',
+    search: true,
+  },
   render: () => {
     const [text, setText] = useState('')
 
     return (
       <>
         <TextField
-          placeholder={'Input search'}
-          search={true}
-          value={text}
           onChange={e => setText(e.currentTarget.value)}
           onClearClick={() => setText('')}
+          placeholder={'Input search'}
+          search
+          value={text}
         />
       </>
     )
   },
+}
+export const VisiableValue = {
   args: {
     label: 'Some label',
     placeholder: 'Search...',
     search: true,
   },
-}
-export const VisiableValue = {
   render: () => {
     const [showText, setShowText] = useState(true)
     const [text, setText] = useState('')
@@ -69,29 +73,24 @@ export const VisiableValue = {
     return (
       <>
         <TextField
-          placeholder={'Input search'}
+          onChange={e => setText(e.currentTarget.value)}
+          onClearClick={() => setText('')}
           onDoubleClick={() => {
             setShowText(!showText)
           }}
-          search={true}
+          placeholder={'Input search'}
+          search
           value={showText ? text : '---'}
-          onChange={e => setText(e.currentTarget.value)}
-          onClearClick={() => setText('')}
         />
       </>
     )
-  },
-  args: {
-    label: 'Some label',
-    placeholder: 'Search...',
-    search: true,
   },
 }
 
 export const Invalid = {
   render: () => {
     return (
-      <TextField value="some value" label="some label" error={true} errorMessage="Error mesage" />
+      <TextField error errorMessage={'Error mesage'} label={'some label'} value={'some value'} />
     )
   },
 }

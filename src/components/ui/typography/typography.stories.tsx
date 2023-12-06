@@ -1,12 +1,11 @@
+import { TheGift } from '@/assets/icons'
 import { Meta } from '@storybook/react'
 
 import { Typography } from './'
 
-import { TheGift } from '@/assets/icons'
-
 export default {
-  title: 'Components/Typography',
   component: Typography.H1,
+  title: 'Components/Typography',
 } as Meta<typeof Typography.H1>
 
 export const AllTypography = {
@@ -25,7 +24,7 @@ export const AllTypography = {
       <Typography.Link>Link</Typography.Link>
       <Typography.SubtitleLink>Subtitle Link</Typography.SubtitleLink>
       <Typography.CaptionLink>Caption Link</Typography.CaptionLink>
-      <Typography.Error component="div">Error</Typography.Error>
+      <Typography.Error component={'div'}>Error</Typography.Error>
     </div>
   ),
 }

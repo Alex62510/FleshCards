@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Meta, StoryObj } from '@storybook/react'
 import { JSX } from 'react/jsx-runtime'
 
-import { Select, SelectProps } from './select.tsx'
+import { Select, SelectProps } from './select'
 
 const meta = {
   argTypes: {
@@ -35,27 +35,27 @@ export const ControlledSelect: Story = {
     const [value, setValue] = useState('')
 
     return (
-      <Select options={['1', '2']} value={value} onValueChange={setValue} placeholder={'select'} />
+      <Select onValueChange={setValue} options={['1', '2']} placeholder={'select'} value={value} />
     )
   },
 }
 export const SmallWithLongItemNames = {
+  args: {
+    disabled: false,
+    options: ['1', '2', '3'],
+    placeholder: 'Все курсы',
+  },
+
   render: (args: JSX.IntrinsicAttributes & SelectProps) => {
     const [value, setValue] = useState('')
 
     return (
       <div>
         <div style={{ width: 200 }}>
-          <Select {...args} value={value} onValueChange={setValue} />
+          <Select {...args} onValueChange={setValue} value={value} />
         </div>
         <div>Selected value: {value}</div>
       </div>
     )
-  },
-
-  args: {
-    placeholder: 'Все курсы',
-    disabled: false,
-    options: ['1', '2', '3'],
   },
 }
