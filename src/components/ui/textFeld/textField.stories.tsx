@@ -1,96 +1,35 @@
-import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Eye } from '@/assets/icons/eye'
-import { Meta } from '@storybook/react'
+import { TextField } from './'
 
-import { TextField } from '../textFeld/textField'
-
-export default {
+const meta = {
   component: TextField,
   tags: ['autodocs'],
-  title: 'Components/Data Entry/Text Field',
-} as Meta<typeof TextField>
+  title: 'Components/TextField',
+} satisfies Meta<typeof TextField>
 
-export const Primary = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
-    disabled: false,
-    error: false,
-    label: 'Input',
-    placeholder: 'Input',
-  },
-}
-export const WithIcon = {
-  args: {
-    disabled: false,
-    error: false,
-    iconEnd: <Eye fill={'var(--color-dark-100)'} />,
-    label: 'Input',
-    placeholder: 'Input',
+    label: 'Label',
+    placeholder: 'Placeholder',
   },
 }
 
-export const Search = {
+export const Password: Story = {
   args: {
-    disabled: false,
-    error: false,
-    placeholder: 'Input search',
-    search: true,
+    label: 'Label',
+    placeholder: 'Password',
+    type: 'password',
   },
 }
 
-export const SearchChangeValue = {
+export const Error: Story = {
   args: {
-    label: 'Some label',
-    placeholder: 'Search...',
-    search: true,
-  },
-  render: () => {
-    const [text, setText] = useState('')
-
-    return (
-      <>
-        <TextField
-          onChange={e => setText(e.currentTarget.value)}
-          onClearClick={() => setText('')}
-          placeholder={'Input search'}
-          search
-          value={text}
-        />
-      </>
-    )
-  },
-}
-export const VisiableValue = {
-  args: {
-    label: 'Some label',
-    placeholder: 'Search...',
-    search: true,
-  },
-  render: () => {
-    const [showText, setShowText] = useState(true)
-    const [text, setText] = useState('')
-
-    return (
-      <>
-        <TextField
-          onChange={e => setText(e.currentTarget.value)}
-          onClearClick={() => setText('')}
-          onDoubleClick={() => {
-            setShowText(!showText)
-          }}
-          placeholder={'Input search'}
-          search
-          value={showText ? text : '---'}
-        />
-      </>
-    )
-  },
-}
-
-export const Invalid = {
-  render: () => {
-    return (
-      <TextField error errorMessage={'Error mesage'} label={'some label'} value={'some value'} />
-    )
+    errorMessage: 'Error message',
+    label: 'Input with error',
+    value: 'Wrong value',
   },
 }
