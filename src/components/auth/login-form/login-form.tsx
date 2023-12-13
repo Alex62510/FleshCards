@@ -29,8 +29,18 @@ export const LoginForm = ({ onSubmit }: { onSubmit: (data: FormValues) => void }
     <>
       <DevTool control={control} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <ControlledTextField control={control} label={'Email'} name={'email'} />
-        <ControlledTextField control={control} label={'Password'} name={'password'} />
+        <ControlledTextField
+          control={control}
+          label={'Email'}
+          name={'email'}
+          placeholder={'Email'}
+        />
+        <ControlledTextField
+          control={control}
+          label={'Password'}
+          name={'password'}
+          placeholder={'Password'}
+        />
         <ControlledCheckbox control={control} label={'Remember Me'} name={'rememberMe'} />
         <Button type={'submit'}>Submit</Button>
       </form>
