@@ -1,23 +1,24 @@
 import { Ref, SVGProps, forwardRef, memo } from 'react'
-
 const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     fill={'none'}
-    height={24}
+    height={20}
     ref={ref}
-    width={24}
+    viewBox={'0 0 24 24'}
+    width={20}
     xmlns={'http://www.w3.org/2000/svg'}
     {...props}
   >
-    <path d={'M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z'} fill={'#000'} />
     <path
+      clipRule={'evenodd'}
       d={
-        'M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1Zm-9.87 4a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z'
+        'M12 4.5C7 4.5 2.73 7.6 1 12a11.83 11.83 0 0 0 22 0c-1.73-4.39-6-7.5-11-7.5zM12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z'
       }
-      fill={props.fill}
+      fill={'#fff'}
+      fillRule={'evenodd'}
     />
   </svg>
 )
 const ForwardRef = forwardRef(SvgComponent)
 
-export const Eye = memo(ForwardRef)
+export default memo(ForwardRef)
