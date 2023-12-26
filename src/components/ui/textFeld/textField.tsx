@@ -58,9 +58,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div className={classNames.root}>
         {label && (
-          <Typography.Body1 as={'label'} className={classNames.label} variant={'body2'}>
+          <Typography.Caption as={'label'} className={classNames.label}>
             {label}
-          </Typography.Body1>
+          </Typography.Caption>
         )}
         <div className={classNames.fieldContainer}>
           {search && <Search className={classNames.leadingIcon} />}
