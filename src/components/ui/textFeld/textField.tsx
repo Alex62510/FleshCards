@@ -1,7 +1,7 @@
 import { ChangeEvent, ComponentProps, ComponentPropsWithoutRef, forwardRef, useState } from 'react'
 
 import { Search } from '@/assets/icons'
-import { Eye } from '@/assets/icons/eye'
+import Eye from '@/assets/icons/eye'
 import VisibilityOff from '@/assets/icons/visibilityOff'
 import { clsx } from 'clsx'
 
