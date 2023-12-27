@@ -1,0 +1,32 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 420px;
+  max-height: 528px;
+  padding: 33px 36px 29px;
+  background-color: var(--color-dark-700);
+}
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 19px;
+}
+
+.instructions {
+  margin-bottom: 65px;
+  color: var(--color-light-900);
+  text-align: center;
+  opacity: 0.5;
+}
+.title {
+  margin-bottom: 27px;
+  text-align: center;
+
+}
+.button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 19px;
+}
