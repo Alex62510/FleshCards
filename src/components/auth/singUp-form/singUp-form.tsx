@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 
-import { ControlledCheckbox } from '@/components/controlled/controlled-checkbox/controlled-checkbox'
 import { ControlledTextField } from '@/components/controlled/controlled-textfield/controlled-textfield'
 import { Button } from '@/components/ui'
 import { SimpleCard } from '@/components/ui/simpleCard'
@@ -9,24 +8,36 @@ import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import s from './singIn-form.module.scss'
+import s from './singUp-form.module.scss'
 
-const schema = z.object({
-  email: z.string().email('Invalid email address').nonempty('Enter email'),
-  password: z.string().min(5, { message: 'Invalid password' }).nonempty('Enter password'),
-  rememberMe: z.boolean().optional(),
-})
+const schema = z
+  .object({
+    confirmPassword: z.string().nonempty('Confirm your password'),
+    email: z.string().email('Invalid email address').nonempty('Enter email'),
+    password: z.string().min(5, { message: 'Invalid password' }).nonempty('Confirm your password'),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password !== data.confirmPassword) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Passwords do not match',
+        path: ['confirmPassword'],
+      })
+    }
+
+    return data
+  })
 
 type FormType = z.infer<typeof schema>
 type Props = {
   onSubmit: (data: FormType) => void
 }
-export const SignIn = (props: Props) => {
+export const SignUp = (props: Props) => {
   const { control, handleSubmit } = useForm<FormType>({
     defaultValues: {
+      confirmPassword: '',
       email: '',
       password: '',
-      rememberMe: false,
     },
     mode: 'onSubmit',
     resolver: zodResolver(schema),
@@ -37,7 +48,7 @@ export const SignIn = (props: Props) => {
     <>
       <DevTool control={control} />
       <SimpleCard className={s.card}>
-        <Typography.H1 className={s.title}>Sign in</Typography.H1>
+        <Typography.H1 className={s.title}>Sign Up</Typography.H1>
         <form onSubmit={handleFormSubmitted}>
           <div className={s.form}>
             <ControlledTextField
@@ -53,24 +64,21 @@ export const SignIn = (props: Props) => {
               placeholder={'Password'}
               type={'password'}
             />
+            <ControlledTextField
+              control={control}
+              label={'Confirm Password'}
+              name={'confirmPassword'}
+              placeholder={'Confirm Password'}
+              type={'password'}
+            />
           </div>
-          <ControlledCheckbox
-            className={s.checkbox}
-            control={control}
-            label={'Remember me'}
-            name={'rememberMe'}
-            position={'left'}
-          />
-          <Typography.Link className={s.recoverPasswordLink} to={'/recover-password'}>
-            Forgot Password?
-          </Typography.Link>
           <Button className={s.button} fullWidth type={'submit'}>
-            Sign In
+            Sign Up
           </Button>
         </form>
-        <Typography.Body2 className={s.caption}>{`Don't have an account?`}</Typography.Body2>
-        <Typography.Link className={s.signUpLink} to={'/sign up'}>
-          Sign Up
+        <Typography.Body2 className={s.caption}>{`Already have an account?`}</Typography.Body2>
+        <Typography.Link className={s.signUpLink} to={'/sign-in'}>
+          Sign In
         </Typography.Link>
       </SimpleCard>
     </>
