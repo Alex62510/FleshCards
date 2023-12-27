@@ -4,7 +4,7 @@
   font-size: $fontSize;
   font-weight: $fontWeight;
   line-height: $lineHeight;
-  color: var(--color-light-100);
+  color: var(--color-text-primary);
 }
 
 .large {
@@ -44,6 +44,7 @@
 
   display: inline-block;
   text-align: start;
+  color: var(--color-dark-100);
 }
 
 .overline {
