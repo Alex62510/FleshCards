@@ -30,7 +30,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
     </defs>
   </svg>
 )
-const ForwardRef = forwardRef(SvgComponent)
-const Memo = memo(ForwardRef)
 
-export default Memo
+const ForwardRef = forwardRef(SvgComponent)
+
+export const Edit = memo(ForwardRef)

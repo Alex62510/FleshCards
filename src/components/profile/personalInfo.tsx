@@ -1,5 +1,5 @@
 import { Logout } from '@/assets/icons'
-import Edit from '@/assets/icons/Edit'
+import { Edit } from '@/assets/icons/Edit'
 import Camera from '@/assets/icons/camera'
 import { Button } from '@/components/ui'
 import { SimpleCard } from '@/components/ui/simpleCard'
