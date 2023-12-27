@@ -44,7 +44,7 @@
   color: var(--color-light-100);
   background-color: var(--color-accent-500);
   box-shadow: 0 4px 18px 0 rgba(140 97 255 / 35%);
-
+  border: 2px solid var(--color-accent-500);
   &:hover {
     background-color: var(--color-accent-300);
   }
